@@ -158,4 +158,4 @@ async def help2(ctx):
 	await ctx.author.send(embed=embed)
 
 
-bot.run(os.getnv("TOKEN"))
+bot.run(os.getenv("TOKEN"))
