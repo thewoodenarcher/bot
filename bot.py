@@ -5,8 +5,8 @@ import asyncio
 import time
 import os
 
-bot = discord.bot()
-bot = commands.Bot(command_prefix = "j!")
+bot = discord.Client()
+bot = discord.ext.commands.Bot(command_prefix = "j!")
 bot.remove_command('help')
 
 @bot.command(pass_context=True)
