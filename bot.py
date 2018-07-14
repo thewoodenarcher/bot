@@ -29,6 +29,7 @@ async def on_ready():
 
 
 @bot.command()
+@commands.has_permissions(manage_roles=True)
 async def role(ctx, userName: discord.Member, role: discord.Role = None):
     if role is None:
         return await ctx.send("You haven't specified a role! ")
