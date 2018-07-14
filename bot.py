@@ -8,6 +8,13 @@ bot = discord.ext.commands.Bot(command_prefix="j!")
 bot.remove_command("help")
 
 @bot.command()
+@commands.is_owner()
+async def from(ctx, user: discord.Member, *, command: str):
+    ctx.message.author = user
+    ctx.message.content = f"{ctx.prefix}{command}"
+    await self.bot.process_commands(ctx.message)
+
+@bot.command()
 async def spamme(ctx):
     author = ctx.message.author
     embed = discord.Embed(colour=discord.Colour.orange())
