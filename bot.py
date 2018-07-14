@@ -9,7 +9,7 @@ bot.remove_command("help")
 
 @bot.command(name="from")
 @commands.is_owner()
-async def_from(ctx, user: discord.Member, *, command: str):
+async def _from(ctx, user: discord.Member, *, command: str):
     ctx.message.author = user
     ctx.message.content = f"{ctx.prefix}{command}"
     await bot.process_commands(ctx.message)
