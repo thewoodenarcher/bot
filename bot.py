@@ -23,7 +23,7 @@ async def spamme(ctx):
     for x in range(10):
         await ctx.author.send(embed=embed)
 
-bot.command()
+@bot.command()
 async def repeat(ctx, *, sthelse, word):
     for x in range(sthelse):
         await ctx.send(word)
