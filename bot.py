@@ -23,6 +23,11 @@ async def spamme(ctx):
     for x in range(10):
         await ctx.author.send(embed=embed)
 
+bot.command()
+async def say(ctx, *, word):
+    for x in range(10):
+        await ctx.send(word)
+        
 @bot.event
 async def on_ready():
     print("Bot is online and connected to Discord")
