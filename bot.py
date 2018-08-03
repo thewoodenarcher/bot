@@ -24,8 +24,8 @@ async def spamme(ctx):
         await ctx.author.send(embed=embed)
 
 bot.command()
-async def say(ctx, *, word):
-    for x in range(10):
+async def say(ctx, *, word, sthelse):
+    for x in range(sthelse):
         await ctx.send(word)
         
 @bot.event
