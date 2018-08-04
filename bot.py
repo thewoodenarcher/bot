@@ -106,6 +106,6 @@ async def help2(ctx):
     embed = discord.Embed(colour3=discord.Colour.orange())
     embed.set_author(name='Page 2')
     embed.add_field(name='j!role (user) (role)', value='If a user has a role, it is removed.If not, it is added.', inline=False)
-    await ctx.author.send(embed=embed)
+    await ctx.send(embed=embed)
 
 bot.run(os.getenv("TOKEN"))
