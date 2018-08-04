@@ -93,7 +93,7 @@ async def help(ctx):
     embed.add_field(name='j!help (page)', value='Shows all commands on the given page', inline=False)
     embed.add_field(name='j!say (something)', value='Says anything.', inline=False)
     embed.add_field(name='j!kick (user)', value='Kicks the mentioned user', inline=False)
-    embed.add_field(name='j!spamme', value='Spams you Literally.', inline=False)
+    embed.add_field(name='j!dmme', value='Sends you a nice dm to say hi.', inline=False)
     embed.add_field(name='j!blend', value='Returns a message.', inline=False)
     embed.add_field(name='j!clear (value)', value='Clears the given amount of messages.', inline=False)
     embed.add_field(name='j!mix (something)(something else)', value='Mixes the given words.', inline=False)
