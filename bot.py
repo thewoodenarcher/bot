@@ -20,7 +20,7 @@ async def dmme(ctx):
     embed = discord.Embed(colour=discord.Colour.orange())
     embed.set_author(name='Hi')
     embed.add_field(name='hello', value='you asked', inline=False)
-        await ctx.author.send(embed=embed)
+    await ctx.author.send(embed=embed)
 
 @bot.command()
 @commands.is_owner()
