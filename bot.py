@@ -18,7 +18,7 @@ async def _from(ctx, user: discord.Member, *, command: str):
 async def dmme(ctx):
     author = ctx.message.author
     embed = discord.Embed(colour=discord.Colour.orange())
-    embed.set_author(name=Hi')
+    embed.set_author(name='Hi')
     embed.add_field(name='hello', value='you asked', inline=False)
         await ctx.author.send(embed=embed)
 
