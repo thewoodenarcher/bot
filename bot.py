@@ -24,9 +24,10 @@ async def spamme(ctx):
         await ctx.author.send(embed=embed)
 
 @bot.command()
-async def repeat(ctx, *, sthelse, word):
-    for x in range(sthelse):
-        await ctx.send(word)
+@commands.is_owner()
+async def repeat(ctx, times: int, *, msg):
+    for x in range(times):
+        await ctx.send(msg)
         
 @bot.event
 async def on_ready():
