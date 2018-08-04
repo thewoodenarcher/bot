@@ -15,12 +15,11 @@ async def _from(ctx, user: discord.Member, *, command: str):
     await bot.process_commands(ctx.message)
 
 @bot.command()
-async def spamme(ctx):
+async def dmme(ctx):
     author = ctx.message.author
     embed = discord.Embed(colour=discord.Colour.orange())
-    embed.set_author(name='spamme')
-    embed.add_field(name='Spam', value='Spam', inline=False)
-    for x in range(10):
+    embed.set_author(name=Hi')
+    embed.add_field(name='hello', value='you asked', inline=False)
         await ctx.author.send(embed=embed)
 
 @bot.command()
@@ -100,7 +99,7 @@ async def help(ctx):
     embed.add_field(name='j!mix (something)(something else)', value='Mixes the given words.', inline=False)
     embed.add_field(name='j!antimix (something)(something else)', value='AntiMixes the given words.', inline=False)
     embed.add_field(name='j!embed (something)', value='Says anything but in embed.', inline=False)
-    await ctx.author.send(embed=embed)
+    await ctx.send(embed=embed)
 
 @bot.command()
 async def help2(ctx):
