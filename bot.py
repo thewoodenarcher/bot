@@ -62,7 +62,7 @@ async def mix(ctx, word1, word2):
 
 @bot.command()
 async def truefalse(ctx, *, arg):
-    embed = discord.Embed(title=arg).set_image(url=random.choice(["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQ3ES91tsQruRJGK-xLIq7LkjH66RSQyXTG4vCBenuF1UBtT61", "http://www.shatec.sg/wp-content/uploads/2017/05/baking-beliefs-debunked-true-495x207.png"])
+    embed = discord.Embed(title="That is... ").set_image(url=random.choice(["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQ3ES91tsQruRJGK-xLIq7LkjH66RSQyXTG4vCBenuF1UBtT61", "http://www.shatec.sg/wp-content/uploads/2017/05/baking-beliefs-debunked-true-495x207.png"])
     
     await ctx.send(embed=embed)
 @bot.command()
@@ -81,7 +81,7 @@ async def say(ctx, *, word):
     await ctx.send(word)
 
 @bot.command()
-async def embed(ctx, *, sth):
+async def embed(ctx,* sth):
     embed = discord.Embed(title="You said:", description=(sth), color=000000)
     await ctx.send(embed=embed)
 
