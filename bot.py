@@ -61,10 +61,10 @@ async def mix(ctx, word1, word2):
     await ctx.send(word1[:int(len(word1) / 2)] + word2[int(len(word2) / 2):])
 
 @bot.command()
-async def truefalse(ctx, *, arg) 
-embed = discord.Embed(title=arg"is").set_image(url=random.choice(["first meme", "second meme"])
+async def truefalse(ctx, *, arg):
+    embed = discord.Embed(title=arg"is").set_image(url=random.choice(["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQ3ES91tsQruRJGK-xLIq7LkjH66RSQyXTG4vCBenuF1UBtT61", "second meme"])
 
-await ctx.send(embed=embed)
+    await ctx.send(embed=embed)
 @bot.command()
 async def antimix(ctx, word1, word2):
     await ctx.send(word1[int(len(word1) / 2):] + word2[:int(len(word2) / 2)])
