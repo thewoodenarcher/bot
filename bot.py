@@ -61,7 +61,7 @@ async def mix(ctx, word1, word2):
     await ctx.send(word1[:int(len(word1) / 2)] + word2[int(len(word2) / 2):])
 
 @bot.command()
-async def truefalse(ctx, *, arg):
+async def truefalse(ctx, arg):
     embed = discord.Embed(title="That is... ").set_image(url=random.choice(["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQ3ES91tsQruRJGK-xLIq7LkjH66RSQyXTG4vCBenuF1UBtT61", "http://www.shatec.sg/wp-content/uploads/2017/05/baking-beliefs-debunked-true-495x207.png"])
     
     await ctx.send(embed=embed)
