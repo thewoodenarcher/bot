@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+import random 
 import asyncio
 import time
 import os
@@ -59,6 +60,11 @@ async def kick(ctx, userName: discord.User ):
 async def mix(ctx, word1, word2):
     await ctx.send(word1[:int(len(word1) / 2)] + word2[int(len(word2) / 2):])
 
+@bot.command()
+async def truefalse(ctx, *, arg) 
+embed = discord.Embed(title=arg"is").set_image(url=random.choice(["first meme", "second meme"])
+
+await ctx.send(embed=embed)
 @bot.command()
 async def antimix(ctx, word1, word2):
     await ctx.send(word1[int(len(word1) / 2):] + word2[:int(len(word2) / 2)])
