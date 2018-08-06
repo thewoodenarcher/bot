@@ -92,7 +92,7 @@ async def clear(ctx, amount=100):
 async def cmdname(ctx, stuff=None):
     if not stuff:
         return await ctx.send("What do i even scan? ")
-    em = discord.Embed(title=stuff 'is', description=random.choice(["True", "False"]))
+    em = discord.Embed(title=stuff, description=random.choice(["True", "False"]))
     await ctx.send(embed=em)
  
     
