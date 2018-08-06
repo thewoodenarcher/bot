@@ -94,7 +94,7 @@ async def truefalse(ctx, *, stuff=None):
         return await ctx.send("What do i even scan? Yea sure that's true. ")
     em = discord.Embed(title=stuff, description=random.choice(["True", "False"]), colour=discord.Colour.red ())
     await ctx.send(embed=em)
- 
+@bot.command()
 async def choose(ctx, args=None, stuff=None):
     if not stuff:
         return await ctx.send("I need 2 things to choose from ")
