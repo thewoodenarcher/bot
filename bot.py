@@ -89,7 +89,7 @@ async def clear(ctx, amount=100):
     await ctx.send('OOF messages')
 
 @bot.command()
-async def cmdname(ctx, stuff=None):
+async def truefalse(ctx, stuff=None):
     if not stuff:
         return await ctx.send("What do i even scan? ")
     em = discord.Embed(title=stuff, description=random.choice(["True", "False"]))
