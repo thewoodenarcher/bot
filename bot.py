@@ -78,7 +78,7 @@ async def say(ctx, *, word):
 
 @bot.command()
 async def embed(ctx,* args):
-    embed = discord.Embed(title="You said:", (description=args), color=000000)
+    embed = discord.Embed(title="You said:", description=args, color=000000)
     await ctx.send(embed=embed)
 
 
@@ -91,7 +91,7 @@ async def clear(ctx, amount=100):
 @bot.command()
 async def truefalse(ctx, *, stuff=None):
     if not stuff:
-        return await ctx.send("What do i even scan? ")
+        return await ctx.send("What do i even scan? Yea sure that's true. ")
     em = discord.Embed(title=stuff, description=random.choice(["True", "False"]), colour=discord.Colour.red ())
     await ctx.send(embed=em)
  
