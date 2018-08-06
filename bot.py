@@ -89,6 +89,15 @@ async def clear(ctx, amount=100):
     await ctx.send('OOF messages')
 
 @bot.command()
+async def cmdname(ctx, stuff=None):
+    if not stuff:
+        return await ctx.send("What do i even scan? ")
+    em = discord.Embed(title=stuff 'is', description=random.choice(["True", "False"]))
+    await ctx.send(embed=em)
+ 
+    
+
+@bot.command()
 async def help(ctx):
     embed = discord.Embed(colour2=discord.Colour.red())
     embed.set_author(name='Page 1')
