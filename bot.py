@@ -95,7 +95,13 @@ async def truefalse(ctx, *, stuff=None):
     em = discord.Embed(title=stuff, description=random.choice(["True", "False"]), colour=discord.Colour.red ())
     await ctx.send(embed=em)
  
-    
+async def truefalse(ctx, args=None, stuff=None):
+    if not stuff:
+        return await ctx.send("I need 2 things to choose from ")
+    if not args:
+        return await ctx.send("I need things to choose from")
+    em = discord.Embed(title=stuff, description=random.choice([stuff, args]), colour=discord.Colour.blue ())
+    await ctx.send(embed=em)    
 
 @bot.command()
 async def help(ctx):
