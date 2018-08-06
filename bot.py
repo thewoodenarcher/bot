@@ -77,7 +77,7 @@ async def say(ctx, *, word):
     await ctx.send(word)
 
 @bot.command()
-async def embed(ctx,* args):
+async def embed(ctx, *, args):
     embed = discord.Embed(title="You said:", description=args, color=000000)
     await ctx.send(embed=embed)
 
