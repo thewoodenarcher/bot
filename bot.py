@@ -100,7 +100,7 @@ async def choose(ctx, args=None, stuff=None):
         return await ctx.send("I need 2 things to choose from ")
     if not args:
         return await ctx.send("I need things to choose from")
-    em = discord.Embed(title=stuff, description=random.choice([stuff, args]), colour=discord.Colour.blue ())
+    em = discord.Embed(title='I choose.... ', description=random.choice([stuff, args]), colour=discord.Colour.blue ())
     await ctx.send(embed=em)    
 
 @bot.command()
