@@ -92,7 +92,7 @@ async def clear(ctx, amount=100):
 async def truefalse(ctx, *, stuff=None):
     if not stuff:
         return await ctx.send("What do i even scan? ")
-    em = discord.Embed(title=stuff, description=random.choice(["True", "False"]), color=discord.Color.red)
+    em = discord.Embed(title=stuff, description=random.choice(["True", "False"]), colour=discord.Colour.red)
     await ctx.send(embed=em)
  
     
