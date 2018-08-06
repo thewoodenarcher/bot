@@ -92,7 +92,7 @@ async def clear(ctx, amount=100):
 async def truefalse(ctx, *, stuff=None):
     if not stuff:
         return await ctx.send("What do i even scan? ")
-    em = discord.Embed(title=stuff, description=random.choice(["True", "False"]), (colour=discord.Colour.red ()))
+    em = discord.Embed(title=stuff, description=random.choice(["True", "False"]), colour=discord.Colour.red ())
     await ctx.send(embed=em)
  
     
@@ -114,7 +114,7 @@ async def help(ctx):
 
 @bot.command()
 async def help2(ctx):
-    embed = discord.Embed(colour3=discord.Colour.orange())
+    embed = discord.Embed(colour=discord.Colour.orange())
     embed.set_author(name='Page 2') 
     embed.add_field(name='j!role (user) (role)', value='If a user has a role, it is removed.If not, it is added.', inline=False)
     embed.add_field(name= 'j!truefalse (something)', value='Detects if you are lying.', inline=False)
