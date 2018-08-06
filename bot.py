@@ -95,7 +95,7 @@ async def truefalse(ctx, *, stuff=None):
     em = discord.Embed(title=stuff, description=random.choice(["True", "False"]), colour=discord.Colour.red ())
     await ctx.send(embed=em)
  
-async def truefalse(ctx, args=None, stuff=None):
+async def choose(ctx, args=None, stuff=None):
     if not stuff:
         return await ctx.send("I need 2 things to choose from ")
     if not args:
@@ -124,6 +124,7 @@ async def help2(ctx):
     embed.set_author(name='Page 2') 
     embed.add_field(name='j!role (user) (role)', value='If a user has a role, it is removed.If not, it is added.', inline=False)
     embed.add_field(name= 'j!truefalse (something)', value='Detects if you are lying.', inline=False)
+    embed.add_field(name= 'j!choose (something) (something else) ', value='Chooses one of 2 things.', inline=False)
     await ctx.send(embed=embed)
 
 bot.run(os.getenv("TOKEN"))
