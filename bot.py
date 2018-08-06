@@ -92,14 +92,14 @@ async def clear(ctx, amount=100):
 async def truefalse(ctx, *, stuff=None):
     if not stuff:
         return await ctx.send("What do i even scan? ")
-    em = discord.Embed(title=stuff, description=random.choice(["True", "False"]), colour=discord.Colour.red)
+    em = discord.Embed(title=stuff, description=random.choice(["True", "False"]), (colour=discord.Colour.red ()))
     await ctx.send(embed=em)
  
     
 
 @bot.command()
 async def help(ctx):
-    embed = discord.Embed(colour2=discord.Colour.red())
+    embed = discord.Embed(colour=discord.Colour.red())
     embed.set_author(name='Page 1')
     embed.add_field(name='j!help (page)', value='Shows all commands on the given page', inline=False)
     embed.add_field(name='j!say (something)', value='Says anything.', inline=False)
