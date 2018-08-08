@@ -53,7 +53,7 @@ async def role(ctx, userName: discord.Member, role: discord.Role = None):
 @bot.command()
 @commands.has_permissions (kick_members=True)
 async def kick(ctx, userName: discord.User ):
-    await bot.kick(userName)
+    await userName.kick(userName)
     await ctx.send("Successfully commited die.")
 
 @bot.command()
