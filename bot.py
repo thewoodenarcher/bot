@@ -71,7 +71,7 @@ async def invite(ctx):
 
 @bot.command()
 async def server(ctx):
-    await ctx.send('https://discord.gg/KuJGXV')
+    await ctx.send('https://discord.gg/KuJGXVK')
 
 @bot.command()
 async def blend(ctx):
