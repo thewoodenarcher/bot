@@ -65,6 +65,13 @@ async def mix(ctx, word1, word2):
 async def antimix(ctx, word1, word2):
     await ctx.send(word1[int(len(word1) / 2):] + word2[:int(len(word2) / 2)])
 
+@bot.command()
+async def invite(ctx):
+    await ctx.send('https://discordapp.com/oauth2/authorize?client_id=459300768525189121&permissions=79872&scope=bot')
+
+@bot.command()
+async def server(ctx):
+    await ctx.send('https://discord.gg/KuJGXV')
 
 @bot.command()
 async def blend(ctx):
@@ -107,7 +114,7 @@ async def choose(ctx, args=None, stuff=None):
 async def help(ctx):
     embed = discord.Embed(colour=discord.Colour.red())
     embed.set_author(name='Page 1')
-    embed.add_field(name='j!help (page)', value='Shows all commands on the given page', inline=False)
+    embed.add_field(name='j!help/j!help2', value='Shows all commands on the given page', inline=False)
     embed.add_field(name='j!say (something)', value='Says anything.', inline=False)
     embed.add_field(name='j!kick (user)', value='Kicks the mentioned user', inline=False)
     embed.add_field(name='j!dmme', value='Sends you a nice dm to say hi.', inline=False)
@@ -116,6 +123,7 @@ async def help(ctx):
     embed.add_field(name='j!mix (something)(something else)', value='Mixes the given words.', inline=False)
     embed.add_field(name='j!antimix (something)(something else)', value='AntiMixes the given words.', inline=False)
     embed.add_field(name='j!embed (something)', value='Says anything but in embed.', inline=False)
+    embed.add_field(name='j!server', value='Sends the support server link', inline=False) 
     await ctx.send(embed=embed)
 
 @bot.command()
@@ -125,6 +133,7 @@ async def help2(ctx):
     embed.add_field(name='j!role (user) (role)', value='If a user has a role, it is removed.If not, it is added.', inline=False)
     embed.add_field(name= 'j!truefalse (something)', value='Detects if you are lying.', inline=False)
     embed.add_field(name= 'j!choose (something) (something else) ', value='Chooses one of 2 things.', inline=False)
+    embed.add_field(name= 'j!invite', value='Sends the bot invite link', inline=False)
     await ctx.send(embed=embed)
 
 bot.run(os.getenv("TOKEN"))
