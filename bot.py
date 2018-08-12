@@ -35,6 +35,17 @@ async def on_ready():
 
 
 @bot.command()
+async def ping(ctx):
+    color = discord.Color(value=0xf9e236)
+    e = discord.Embed(color=color, title='Pinging')
+    e.description = 'Please wait... :ping_pong:'
+    msg = await ctx.send(embed=e)
+    em = discord.Embed(color=color, title='PoIIIng! Your supersonic latency is:')
+    em.description = f"{bot.latency * 1000:.4f} ms"
+    em.set_thumbnail(
+        url="https://media.giphy.com/media/nE8wBpOIfKJKE/giphy.gif")
+    await msg.edit(embed=em)
+@bot.command()
 @commands.has_permissions(manage_roles=True)
 async def role(ctx, userName: discord.Member, role: discord.Role = None):
     if role is None:
