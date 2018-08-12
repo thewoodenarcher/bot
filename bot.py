@@ -38,9 +38,9 @@ async def on_ready():
 async def ping(ctx):
     color = discord.Color(value=0xf9e236)
     e = discord.Embed(color=color, title='Pinging')
-    e.description = 'Please wait... :ping_pong:'
+    e.description = 'lmao wait... :thinking:'
     msg = await ctx.send(embed=e)
-    em = discord.Embed(color=color, title='PoIIIng! Your supersonic latency is:')
+    em = discord.Embed(color=color, title='Big OOF! Your supersonic latency(like u even care)  is:')
     em.description = f"{bot.latency * 1000:.4f} ms"
     em.set_thumbnail(
         url="https://media.giphy.com/media/nE8wBpOIfKJKE/giphy.gif")
