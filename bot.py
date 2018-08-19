@@ -32,6 +32,8 @@ async def repeat(ctx, times: int, *, msg):
 @bot.event
 async def on_ready():
     print("Bot is online and connected to Discord")
+    responses = ['j!help', 'the word \"bed\" looks like a bed', 'this bot is not that good. chill, im learning','u have ligma','j!help for help'] 
+    await bot.change_presence(activity=discord.Game(name=random.choice(responses)))
 
 
 @bot.command()
