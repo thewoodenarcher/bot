@@ -38,7 +38,7 @@ async def on_ready():
 
 @bot.command()
 async def ping(ctx):
-    color = discord.Color(value=0xf9e236)
+    color = discord.Color(value=0)
     e = discord.Embed(color=color, title='Pinging')
     e.description = 'lmao wait... :thinking:'
     msg = await ctx.send(embed=e)
@@ -95,12 +95,12 @@ async def blend(ctx):
 @bot.command()
 async def say(ctx, *, word):
     await ctx.send(word)
-    await bot.delete_message(message)
+    await ctx.delete(message)
 @bot.command()
 async def embed(ctx, *, args):
     embed = discord.Embed(title="You said:", description=args, color=000000)
     await ctx.send(embed=embed)
-    await bot.delete_message(message)
+    await ctx.delete_message(message)
 
 
 @bot.command()
