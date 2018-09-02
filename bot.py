@@ -15,12 +15,12 @@ async def _from(ctx, user: discord.Member, *, command: str):
     ctx.message.content = f"{ctx.prefix}{command}"
     await bot.process_commands(ctx.message)
 @bot.command()
-async def servername(ctx):
+async def serverinfo(ctx):
      embed = discord.Embed(colour=discord.Colour.red())
      embed.add_field(name= 'Name', value=(ctx.guild.name), inline=False)
      embed.add_field(name= 'Owner', value=(ctx.guild.owner), inline=False)
      embed.add_field(name= 'Member count:', value=(ctx.guild.member_count), inline=False)
-   
+     await ctx.send embed=embed
     
     
 @bot.command()
