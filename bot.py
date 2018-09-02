@@ -17,6 +17,7 @@ async def _from(ctx, user: discord.Member, *, command: str):
 @bot.command()
 async def serverinfo(ctx):
      embed = discord.Embed(colour=discord.Colour.red())
+     embed.add_field(value=(icon_url_as(*, format='webp', size=1024)
      embed.add_field(name= 'Name', value=(ctx.guild.name), inline=False)
      embed.add_field(name= 'Owner', value=(ctx.guild.owner), inline=False)
      embed.add_field(name= 'Member count:', value=(ctx.guild.member_count), inline=False)
