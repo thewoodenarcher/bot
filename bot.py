@@ -19,7 +19,7 @@ async def _from(ctx, user: discord.Member, *, command: str):
 @commands.has_permissions(manage_guild=True)
 async def mute(ctx, member: discord.Member):
     role = discord.utils.get(member.guild.roles, name='Joeyed')
-    await bot.add_roles(member, role)
+    await member.add_roles(member, role)
     embed = discord.Embed(title="That user just got JOEYED", description="**{0}** was rekt by **{1}**!".format(member, ctx.message.author), color=0xff00f6)
     await bot.say(embed=embed)
     
