@@ -14,7 +14,10 @@ async def _from(ctx, user: discord.Member, *, command: str):
     ctx.message.author = user
     ctx.message.content = f"{ctx.prefix}{command}"
     await bot.process_commands(ctx.message)
-
+@bot.command(
+async def servername(ctx):
+    await ctx.send (guild.name)
+    
 @bot.command()
 @commands.has_permissions(manage_messages = True)
 async def mute(self, ctx, user:discord.Member=None):
