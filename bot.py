@@ -160,6 +160,7 @@ async def help2(ctx):
     embed.add_field(name= 'j!choose (something) (something else) ', value='Chooses one of 2 things.', inline=False)
     embed.add_field(name= 'j!invite', value='Sends the bot invite link', inline=False)
     embed.add_field(name= 'j!ping', value='Sends a 90% copied ping cmd', inline=False)
+    embed.add_field(name= 'j!mute', value='Gives someone the "joeyed" role. ', inline=False)
     await ctx.send(embed=embed)
 
 bot.run(os.getenv("TOKEN"))
