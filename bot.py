@@ -15,6 +15,17 @@ async def _from(ctx, user: discord.Member, *, command: str):
     ctx.message.content = f"{ctx.prefix}{command}"
     await bot.process_commands(ctx.message)
 
+@bot.command(pass_context = True)
+async def mute(ctx, member: discord.Member):
+     if ctx.message.author.server_permissions.manage_guild:
+        role = discord.utils.get(member.server.roles, name='Joeyed')
+        await bot.add_roles(member, role)
+        embed=discord.Embed(title="That user just got JOEYED", description="**{0}** was rekt by **{1}**!".format(member, ctx.message.author), color=0xff00f6)
+        await bot.say(embed=embed)
+     else:
+        embed=discord.Embed(title="Rekt back. ", description="You don't have permission to use this command,learn grammar.", color=0xff00f6)
+        await bot.say(embed=embed)    
+
 @bot.command()
 async def dmme(ctx):
     author = ctx.message.author
