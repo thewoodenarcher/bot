@@ -17,19 +17,19 @@ async def _from(ctx, user: discord.Member, *, command: str):
 
 @commands.command()
 @commands.has_permissions(manage_messages = True)
-    async def mute(self, ctx, user:discord.Member=None):
-        if user == None:
-            await ctx.send("Who do i mute? ")
-        elif user == ctx.author.id:
-            await ctx.send("You can't mute youserlf...")
-        elif user.id == 459300768525189121:
-            await ctx.send("Why would i even mute myself?!")
-        else:
-            await ctx.send("{} just got JOEYED".format(user.name))
-            await ctx.channel.set_permissions(user, send_messages=False)
-            await asyncio.sleep(120)
-            await ctx.channel.set_permissions(user, send_messages=True)
-            await ctx.send("You are unJOEYED {} !".format(user.name))
+async def mute(self, ctx, user:discord.Member=None):
+    if user == None:
+        await ctx.send("Who do i mute? ")
+    elif user == ctx.author.id:
+        await ctx.send("You can't mute youserlf...")
+    elif user.id == 459300768525189121:
+        await ctx.send("Why would i even mute myself?!")
+    else:
+        await ctx.send("{} just got JOEYED".format(user.name))
+        await ctx.channel.set_permissions(user, send_messages=False)
+        await asyncio.sleep(120)
+        await ctx.channel.set_permissions(user, send_messages=True)
+        await ctx.send("You are unJOEYED {} !".format(user.name))
     
 
 @bot.command()
