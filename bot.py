@@ -20,6 +20,8 @@ async def serverinfo(ctx):
      embed.add_field(name= 'Name', value=(ctx.guild.name), inline=False)
      embed.add_field(name= 'Owner', value=(ctx.guild.owner), inline=False)
      embed.add_field(name= 'Member count:', value=(ctx.guild.member_count), inline=False)
+     embed.add_field(name= 'Verification level',value=(ctx.guild.verification_level), inline=False)
+     embed.add_field(name= 'Created at',value=(ctx.guild.created_at), inline=False)
      await ctx.send (embed=embed)
     
     
