@@ -16,7 +16,12 @@ async def _from(ctx, user: discord.Member, *, command: str):
     await bot.process_commands(ctx.message)
 @bot.command()
 async def servername(ctx):
-    await ctx.send (ctx.guild.name)
+     embed = discord.Embed(colour=discord.Colour.red())
+     embed.add_field(name= 'Name', value=(ctx.guild.name), inline=False)
+     embed.add_field(name= 'Owner', value=(ctx.guild.owner), inline=False)
+     embed.add_field(name= 'Member count:', value=(ctx.guild.member_count), inline=False)
+   
+    
     
 @bot.command()
 @commands.has_permissions(manage_messages = True)
@@ -170,6 +175,7 @@ async def help2(ctx):
     embed.add_field(name= 'j!invite', value='Sends the bot invite link', inline=False)
     embed.add_field(name= 'j!ping', value='Sends a 90% copied ping cmd', inline=False)
     embed.add_field(name= 'j!mute', value='Gives someone the "muted" role. ', inline=False)
+    embed.add_field(name= 'j!serverinfo', value='Gives the server\'s info. ', inline=False)
     await ctx.send(embed=embed)
 
 bot.run(os.getenv("TOKEN"))
