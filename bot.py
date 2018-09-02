@@ -15,7 +15,7 @@ async def _from(ctx, user: discord.Member, *, command: str):
     ctx.message.content = f"{ctx.prefix}{command}"
     await bot.process_commands(ctx.message)
 
-@commands.command()
+@bot.command()
 @commands.has_permissions(manage_messages = True)
 async def mute(self, ctx, user:discord.Member=None):
     if user == None:
