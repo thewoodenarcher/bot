@@ -201,7 +201,7 @@ class Owner:
         cmd = self.bot.get_command(command)
         if not cmd:
             return await ctx.send(f"Command `{command}` not found.")
-        await ctx.send(f"```py\n{inspect.getsource(cmd.callback).replace('`', '\u200b`')}```")
+        await ctx.send(f"```py\n{inspect.getsource(cmd.callback)}```")
 
     @commands.command()
     @commands.is_owner()
