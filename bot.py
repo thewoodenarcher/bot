@@ -7,6 +7,7 @@ import os
 
 bot = discord.ext.commands.Bot(command_prefix="j!")
 bot.remove_command("help")
+bot._last_result = None
 bot.load_extension("cogs.owner")
 
 @bot.command()
