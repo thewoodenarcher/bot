@@ -4,10 +4,12 @@ import random
 import asyncio
 import time
 import os
+import aiohttp
 
 bot = discord.ext.commands.Bot(command_prefix="j!")
 bot.remove_command("help")
 bot._last_result = None
+bot.session = aiohttp.ClientSession()
 bot.load_extension("cogs.owner")
 
 @bot.command()
