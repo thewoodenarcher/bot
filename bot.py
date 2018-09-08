@@ -7,13 +7,8 @@ import os
 
 bot = discord.ext.commands.Bot(command_prefix="j!")
 bot.remove_command("help")
+bot.load_extension("cogs.owner")
 
-@bot.command(name="from")
-@commands.is_owner()
-async def _from(ctx, user: discord.Member, *, command: str):
-    ctx.message.author = user
-    ctx.message.content = f"{ctx.prefix}{command}"
-    await bot.process_commands(ctx.message)
 @bot.command()
 async def serverinfo(ctx):
      embed = discord.Embed(title='Info', colour=discord.Colour.red())
