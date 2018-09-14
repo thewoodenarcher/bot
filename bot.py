@@ -21,7 +21,10 @@ async def serverinfo(ctx):
      embed.add_field(name= 'Verification level',value=(ctx.guild.verification_level), inline=False)
      embed.add_field(name= 'Was created at',value=(ctx.guild.created_at), inline=False)
      await ctx.send (embed=embed)
-    
+@bot.event
+async def on_command_error(ctx, err):
+    await ctx.send(f"
+```{err}```") 
     
 @bot.command()
 @commands.has_permissions(manage_messages = True)
