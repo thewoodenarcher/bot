@@ -23,8 +23,7 @@ async def serverinfo(ctx):
      await ctx.send (embed=embed)
 @bot.event
 async def on_command_error(ctx, err):
-    await ctx.send(f"
-```{err}```") 
+    await ctx.send(f"```{err}```") 
     
 @bot.command()
 @commands.has_permissions(manage_messages = True)
