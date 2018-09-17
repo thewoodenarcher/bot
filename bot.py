@@ -122,7 +122,7 @@ async def blend(ctx):
 @bot.command()
 async def say(ctx, *, word):
     await ctx.send(word)
-    await discord.Message.delete()
+    await ctx.message.delete()
 @bot.command()
 async def embed(ctx, *, args):
     embed = discord.Embed(title="You said:", description=args, color=000000)
