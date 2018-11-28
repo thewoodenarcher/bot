@@ -12,6 +12,28 @@ bot._last_result = None
 bot.session = aiohttp.ClientSession()
 bot.load_extension("cogs.owner")
 
+@bot.command(pass_context=True)
+   async def quickpoll(self, ctx, question, *options: str):
+       if len(options) <= 1:
+           await self.bot.say('Yea lets make a poll with only one option so its not a poll')
+           return
+       if len(options) > 10:
+           await self.bot.say('Why do you need 10 damn options')
+           return
+       if len(options) == 2 and options[0] == 'yes' and options[1] == 'no':
+           reactions = ['✅', '❌']
+       else:
+           reactions = ['1⃣', '2⃣', '3⃣', '4⃣', '5⃣', '6⃣', '7⃣', '8⃣', '9⃣', '🔟']
+       description = []
+       for x, option in enumerate(options):
+           description += '\n {} {}'.format(reactions[x], option)
+       embed = discord.Embed(title=question, description=''.join(description))
+       react_message = await self.bot.say(embed=embed)
+       for reaction in reactions[:len(options)]:
+           await self.bot.add_reaction(react_message, reaction)
+       embed.set_footer(text='Poll ID: {}'.format(react_message.id))
+       await self.bot.edit_message(react_message, embed=embed)
+
 @bot.command()
 async def serverinfo(ctx):
      embed = discord.Embed(title='Info', colour=discord.Colour.red())
