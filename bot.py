@@ -132,10 +132,10 @@ async def say(ctx, *, word):
 async def embed(ctx, *, args):
     embed = discord.Embed(title="You said:", description=args, color=000000)
     await ctx.send(embed=embed)
-      try:
-        await ctx.message.delete()
+    try:
+      await ctx.message.delete()
     except:
-        pass
+      pass
  
 @bot.command()
 @commands.has_permissions(manage_messages=True)
