@@ -60,7 +60,7 @@ async def repeat(ctx, times: int, *, msg):
 @bot.command(pass_context=True)
 @commands.is_owner()
 async def dm(ctx, member: discord.Member, *, msg): 
-    await member.send ('msg')        
+    await member.send (msg)        
 @bot.event
 async def on_ready():
     print("Bot is online and connected to Discord")
