@@ -34,7 +34,7 @@ class Joey(commands.Bot):
             embed.footer = footer
         return bot.get_channel(self.logs_channel).send(embed=embed)
 
-bot = discord.ext.commands.Bot(command_prefix="j!")
+bot = Joey(command_prefix="j!")
 bot.db = AsyncIOMotorClient(os.environ.get("MONGODB")).drugsonjoeybot
 bot.remove_command("help")
 bot._last_result = None
