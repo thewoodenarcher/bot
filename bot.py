@@ -1,17 +1,44 @@
 import discord
 from discord.ext import commands
-import random 
+import random
 import asyncio
 import time
 import os
 import aiohttp
+from motor.motor_asyncio import AsyncIOMotorClient
+import traceback
+from utils.utils import slice_text, capitalize
+
+class Joey(commands.Bot):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.db = AsyncIOMotorClient(os.environ.get("MONGODB")).drugsonjoeybot
+        self.cogs_list = [ x.replace(".py", "") for x in os.listdir("cogs") ]
+        self.logs_channel_id = 534412462502576136
+        self.color = 0x770606
+        self.devs = [292690616285134850, 332468396329271306]
+
+    async def on_ready(self):
+        print(f"Logged in as {self.user} ({self.user.id})")
+        for cog in self.cogs_list:
+            bot.load_extension(f"cogs.{x}")
+        except Exception as e:
+            await self.log_error(e)
+
+    def log_error(self, err, footer = ""):
+        embed = discord.Embed(color=self.color, title="Error")
+        tr = slice_text("\n".join(traceback.format_exception(type(err), err, err.__traceback__)), 2000)
+        embed.description = tr
+        if footer:
+            embed.footer = footer
+        return bot.get_channel(self.logs_channel).send(embed=embed)
 
 bot = discord.ext.commands.Bot(command_prefix="j!")
+bot.db = AsyncIOMotorClient(os.environ.get("MONGODB")).drugsonjoeybot
 bot.remove_command("help")
 bot._last_result = None
 bot.session = aiohttp.ClientSession()
 bot.load_extension("cogs.owner")
-
 
 
 @bot.command()
@@ -23,10 +50,47 @@ async def serverinfo(ctx):
      embed.add_field(name= 'Verification level',value=(ctx.guild.verification_level), inline=False)
      embed.add_field(name= 'Was created at',value=(ctx.guild.created_at), inline=False)
      await ctx.send (embed=embed)
+
 @bot.event
-async def on_command_error(ctx, err):
-    await ctx.send(f"```{err}```") 
-    
+async def on_command_error(ctx, error):
+    if isinstance(error, commands.NotOwner):
+        return await ctx.send("This command is for Developers only!")
+    if isinstance(error, commands.MissingPermissions):
+        if ctx.author.id in ctx.bot.devs:
+            return await ctx.reinvoke()
+        perms = list(map(capitalize, error.missing_perms))
+        return await ctx.send("Your missing permission(s) to run this command:\n{}".format("\n".join(perms)))
+    if isinstance(error, commands.CommandNotFound):
+        return
+    if isinstance(error, commands.CommandOnCooldown):
+        if ctx.author.id in ctx.bot.devs:
+            return await ctx.reinvoke()
+        hours, remainder = divmod(int(error.retry_after), 3600)
+        minutes, seconds = divmod(remainder, 60)
+        days, hours = divmod(hours, 24)
+        fmt = "{s} seconds"
+        if minutes:
+            fmt = "{m}m {s}s"
+        if hours:
+            fmt = "{h}h {m}m {s}s"
+        if days:
+            fmt = "{d}d {h}h {m}m {s}s"
+        cooldown = fmt.format(d=days, h=hours, m=minutes, s=seconds)
+        return await ctx.send(f"Please wait **{cooldown}** before using this commandagain.")
+    if isinstance(error, commands.NoPrivateMessage):
+        return await ctx.send("This command can only be ran in a server!")
+    if isinstance(error, commands.BadArgument):
+        return await ctx.send(error)
+    if isinstance(error, commands.MissingRequiredArgument):
+        return await ctx.send(error)
+    if isinstance(error, commands.DisabledCommand):
+        if ctx.author.id in ctx.bot.devs:
+            return await ctx.reinvoke()
+        return await ctx.send("Sorry, this command is currently disabled.")
+
+    await ctx.send("Something went wrong, please try again later.")
+    await ctx.bot.log_error(error)
+
 @bot.command()
 @commands.has_permissions(manage_messages = True)
 async def mute(self, ctx, user:discord.Member=None):

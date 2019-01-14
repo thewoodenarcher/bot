@@ -22,12 +22,20 @@ def paginate(text: str):
         pages.append(text[last:curr])
     return list(filter(lambda a: a != "", pages))
 
+
+def dev():
+    async def check(ctx):
+        if ctx.author.id not in ctx.bot.devs:
+            raise commands.NotOwner("This command is for developers only!")
+        return True
+    return commands.check(check)
+
 class Owner:
     """Core class for owner commands"""
     def __init__(self, bot):
         self.bot = bot
         self.sessions = set()
-        
+
     def cleanup_code(self, content):
         '''Automatically removes code blocks from the code.'''
         # remove ```py\n```
@@ -35,9 +43,9 @@ class Owner:
             return '\n'.join(content.split('\n')[1:-1])
         return content.strip('` \n')
 
-    
+
     @commands.command()
-    @commands.is_owner()
+    @dev()
     async def sudo(self, ctx, user: discord.Member, *, command):
         """Calls a command on behalf of another person"""
         msg = ctx.message
@@ -46,7 +54,7 @@ class Owner:
         await self.bot.process_commands(msg)
 
     @commands.command()
-    @commands.is_owner()
+    @dev()
     async def unload(self, ctx, cog: str = None):
         """Unloads all or a specific cog"""
         if not cog:
@@ -68,7 +76,7 @@ class Owner:
                 await ctx.send(f"Error unloading {cog}\n```py\n{e}\n```")
 
     @commands.command()
-    @commands.is_owner()
+    @dev()
     async def load(self, ctx, cog: str = None):
         """Loads all or a specific cog"""
         if not cog:
@@ -80,7 +88,7 @@ class Owner:
                 except Exception as e:
                     await ctx.send(f"Error loading {x}\n```py\n{e}\n```")
             await ctx.send("Done loading all cogs.")
-                   
+
         else:
             try:
                 self.bot.load_extension(f"cogs.{cog}")
@@ -89,7 +97,7 @@ class Owner:
                 await ctx.send(f"Error loading {cog}\n```py\n{e}\n```")
     
     @commands.command()
-    @commands.is_owner()
+    @dev()
     async def reload(self, ctx, cog: str = None):
         """Reloads all or a specific cog"""
         if not cog:
@@ -111,7 +119,7 @@ class Owner:
                 await ctx.send(f"Error loading {cog}\n```py\n{e}\n```")
 
     @commands.command(name="exec", aliases=["bash", "shell"])
-    @commands.is_owner()
+    @dev()
     async def _exec(self, ctx, *, code: str):
         """Executes any command line code"""
         code = self.cleanup_code(code)
@@ -123,7 +131,7 @@ class Owner:
         await ctx.send(f"```{msg}```")
 
     @commands.command(name="eval", aliases=["ev"])
-    @commands.is_owner()
+    @dev()
     async def _eval(self, ctx, *, body):
         """Evaluates python code."""
         env = {
@@ -137,7 +145,8 @@ class Owner:
             "_": self.bot._last_result,
             "source": inspect.getsource,
             "src": inspect.getsource,
-            "session": self.bot.session
+            "session": self.bot.session,
+            "db": self.bot.db
         }
 
         env.update(globals())
@@ -195,7 +204,7 @@ class Owner:
             await ctx.message.add_reaction('\u2705')
     
     @commands.command(aliases=["src"])
-    @commands.is_owner()
+    @dev()
     async def source(self, ctx, command: str):
         """Returns source code of any command"""
         cmd = self.bot.get_command(command)
@@ -204,7 +213,7 @@ class Owner:
         await ctx.send(f"```py\n{inspect.getsource(cmd.callback)}```")
 
     @commands.command()
-    @commands.is_owner()
+    @dev()
     async def repl(self, ctx):
         """Launches an interactive REPL session."""
         variables = {
@@ -217,7 +226,8 @@ class Owner:
             "_": None,
             "session": self.bot.session,
             "source": inspect.getsource,
-            "src": inspect.getsource
+            "src": inspect.getsource,
+            "db": self.bot.db
         }
 
         if ctx.channel.id in self.sessions:
@@ -298,4 +308,4 @@ class Owner:
 
 
 def setup(bot):
-    bot.add_cog(Owner(bot))        
+    bot.add_cog(Owner(bot))
