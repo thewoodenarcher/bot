@@ -21,9 +21,10 @@ class Joey(commands.Bot):
     async def on_ready(self):
         print(f"Logged in as {self.user} ({self.user.id})")
         for cog in self.cogs_list:
-            bot.load_extension(f"cogs.{x}")
-        except Exception as e:
-            await self.log_error(e)
+            try:
+                bot.load_extension(f"cogs.{x}")
+            except Exception as e:
+                await self.log_error(e)
 
     def log_error(self, err, footer = ""):
         embed = discord.Embed(color=self.color, title="Error")
