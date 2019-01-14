@@ -28,8 +28,8 @@ class Joey(commands.Bot):
 
     def log_error(self, err, footer = ""):
         embed = discord.Embed(color=self.color, title="Error")
-        tr = slice_text("\n".join(traceback.format_exception(type(err), err, err.__traceback__)), 2000)
-        embed.description = tr
+        tr = slice_text("\n".join(traceback.format_exception(type(err), err, err.__traceback__)), 1980)
+        embed.description = f"```py\n{tr}```"
         if footer:
             embed.footer = footer
         return bot.get_channel(self.logs_channel_id).send(embed=embed)
