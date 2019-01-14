@@ -32,7 +32,7 @@ class Joey(commands.Bot):
         embed.description = tr
         if footer:
             embed.footer = footer
-        return bot.get_channel(self.logs_channel).send(embed=embed)
+        return bot.get_channel(self.logs_channel_id).send(embed=embed)
 
 bot = Joey(command_prefix="j!")
 bot.db = AsyncIOMotorClient(os.environ.get("MONGODB")).drugsonjoeybot
