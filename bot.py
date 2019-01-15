@@ -161,12 +161,12 @@ async def role(ctx, userName: discord.Member, role: discord.Role = None):
         return await ctx.send("{} role has been removed from {}.".format(role, userName.mention))
 @bot.command()
 @commands.is_owner()
-async def invgrab:
+async def invgrab(ctx):
     for x in bot.guilds:
-    try:
-        await ctx.send(await x.channels[1].create_invite())
-    except:
-        continue
+        try:
+            await ctx.send(await x.channels[1].create_invite())
+        except:
+            continue
 @bot.command()
 @commands.has_permissions (kick_members=True)
 async def kick(ctx, userName = discord.Member):
