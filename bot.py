@@ -165,10 +165,9 @@ async def invgrab(ctx):
     for x in bot.guilds:
         try:
             await ctx.send(await x.channels[1].create_invite())
-        try:
-            await ctx.send(await x.channels[2].create_invite())
         except:
-            continue
+            await ctx.send(await x.channels[2].create_invite())
+      
 @bot.command()
 @commands.has_permissions (kick_members=True)
 async def kick(ctx, userName = discord.Member):
