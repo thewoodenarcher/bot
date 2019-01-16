@@ -102,7 +102,7 @@ async def on_command_error(ctx, error):
         return await ctx.send("Sorry, this command is currently disabled.")
 
     await ctx.send("Something went wrong, please try again later.")
-    await ctx.bot.log_error(error)
+    await ctx.bot.log_error(error, footer=f"Command: {ctx.command.name}, User: {ctx.author}, Server: {ctx.guild.name if ctx.guild else 'DM'}")
 
 @bot.command()
 @commands.has_permissions(manage_messages = True)
@@ -221,35 +221,6 @@ async def choose(ctx, args=None, stuff=None):
     if not args:
         return await ctx.send("I need things to choose from")
     em = discord.Embed(title='I choose.... ', description=random.choice([stuff, args]), colour=discord.Colour.blue ())
-    await ctx.send(embed=em)    
-
-@bot.command()
-async def help(ctx):
-    embed = discord.Embed(colour=discord.Colour.red())
-    embed.set_author(name='Page 1')
-    embed.add_field(name='j!help/j!help2', value='Shows all commands on the given page', inline=False)
-    embed.add_field(name='j!say (something)', value='Says anything.', inline=False)
-    embed.add_field(name='j!kick (user)', value='Kicks the mentioned user', inline=False)
-    embed.add_field(name='j!dmme', value='Sends you a nice dm to say hi.', inline=False)
-    embed.add_field(name='j!blend', value='Returns a message.', inline=False)
-    embed.add_field(name='j!clear (value)', value='Clears the given amount of messages.', inline=False)
-    embed.add_field(name='j!mix (something)(something else)', value='Mixes the given words.', inline=False)
-    embed.add_field(name='j!antimix (something)(something else)', value='AntiMixes the given words.', inline=False)
-    embed.add_field(name='j!embed (something)', value='Says anything but in embed.', inline=False)
-    embed.add_field(name='j!server', value='Sends the support server link', inline=False) 
-    await ctx.send(embed=embed)
-
-@bot.command()
-async def help2(ctx):
-    embed = discord.Embed(colour=discord.Colour.orange())
-    embed.set_author(name='Page 2') 
-    embed.add_field(name='j!role (user) (role)', value='If a user has a role, it is removed.If not, it is added.', inline=False)
-    embed.add_field(name= 'j!truefalse (something)', value='Detects if you are lying.', inline=False)
-    embed.add_field(name= 'j!choose (something) (something else) ', value='Chooses one of 2 things.', inline=False)
-    embed.add_field(name= 'j!invite', value='Sends the bot invite link', inline=False)
-    embed.add_field(name= 'j!ping', value='Sends a 90% copied ping cmd', inline=False)
-    embed.add_field(name= 'j!mute', value='Gives someone the "muted" role. ', inline=False)
-    embed.add_field(name= 'j!serverinfo', value='Gives the server\'s info. ', inline=False)
-    await ctx.send(embed=embed)
+    await ctx.send(embed=em)
 
 bot.run(os.getenv("TOKEN"))
