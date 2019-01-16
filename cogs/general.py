@@ -31,7 +31,7 @@ class General:
     @commands.command(name="help", aliases=["h", "halp", "commands", "cmds"])
     async def _help(self, ctx, command: str = None):
         """Shows all commands"""
-        prefix = list(filter(lambda x: x != str(ctx.guild.me), await self.bot.get_prefix(ctx.message)))[0]
+        prefix = list(filter(lambda x: x != ctx.guild.me.mention if ctx.guild else ctx.bot.user.mention, await self.bot.get_prefix(ctx.message)))[0]
         if command:
             cmd = self.bot.get_command(command.lower()) or self.bot.get_cog(command)
             if not cmd:
