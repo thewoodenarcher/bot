@@ -24,7 +24,7 @@ class Joey(commands.Bot):
         await bot.change_presence(activity=discord.Game(name=random.choice(responses)))
         for cog in self.cogs_list:
             try:
-                bot.load_extension(f"cogs.{x}")
+                bot.load_extension(f"cogs.{cog}")
             except Exception as e:
                 await self.log_error(e)
 
