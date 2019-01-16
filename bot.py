@@ -13,13 +13,15 @@ class Joey(commands.Bot):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.db = AsyncIOMotorClient(os.environ.get("MONGODB")).drugsonjoeybot
-        self.cogs_list = [ x.replace(".py", "") for x in os.listdir("cogs") ]
+        self.cogs_list = [ x.replace(".py", "") for x in os.listdir("cogs") if x.endswith(".py") ]
         self.logs_channel_id = 534412462502576136
         self.color = 0x770606
         self.devs = [292690616285134850, 332468396329271306]
 
     async def on_ready(self):
         print(f"Logged in as {self.user} ({self.user.id})")
+        responses = ['j!help', 'the word \"bed\" looks like a bed', 'this bot is not that good. chill, im learning','u have ligma','j!help for help']
+        await bot.change_presence(activity=discord.Game(name=random.choice(responses)))
         for cog in self.cogs_list:
             try:
                 bot.load_extension(f"cogs.{x}")
@@ -51,7 +53,6 @@ bot.db = AsyncIOMotorClient(os.environ.get("MONGODB")).drugsonjoeybot
 bot.remove_command("help")
 bot._last_result = None
 bot.session = aiohttp.ClientSession()
-bot.load_extension("cogs.owner")
 
 
 @bot.command()
@@ -62,7 +63,7 @@ async def serverinfo(ctx):
      embed.add_field(name= 'Member count:', value=(ctx.guild.member_count), inline=False)
      embed.add_field(name= 'Verification level',value=(ctx.guild.verification_level), inline=False)
      embed.add_field(name= 'Was created at',value=(ctx.guild.created_at), inline=False)
-     await ctx.send (embed=embed)
+     await ctx.send(embed=embed)
 
 @bot.event
 async def on_command_error(ctx, error):
@@ -136,13 +137,9 @@ async def repeat(ctx, times: int, *, msg):
         await ctx.send(msg)
 @bot.command(pass_context=True)
 @commands.is_owner()
-async def dm(ctx, member: discord.Member, *, msg): 
-    await member.send (msg)        
-@bot.event
-async def on_ready():
-    print("Bot is online and connected to Discord")
-    responses = ['j!help', 'the word \"bed\" looks like a bed', 'this bot is not that good. chill, im learning','u have ligma','j!help for help'] 
-    await bot.change_presence(activity=discord.Game(name=random.choice(responses)))
+async def dm(ctx, member: discord.Member, *, msg: str): 
+    await member.send(msg)
+    await ctx.send(f"DMed {member}")
 
 
 @bot.command()
