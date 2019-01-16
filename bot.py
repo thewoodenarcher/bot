@@ -34,7 +34,19 @@ class Joey(commands.Bot):
             embed.footer = footer
         return bot.get_channel(self.logs_channel_id).send(embed=embed)
 
-bot = Joey(command_prefix="j!")
+async def getprefix(bot, message):
+    if isinstance(message.channel, discord.DMChannel):
+        return commands.when_mentioned_or("j!")(bot, message)
+    try:
+        guild = await bot.db.config.find_one({ "_id": message.guild.id })
+        if not guild:
+            return commands.when_mentioned_or("j!")(bot, message)
+        prefix = guild.get("prefix", "j!")
+        return commands.when_mentioned_or(prefix)(bot, message)
+    except:
+        return commands.when_mentioned_or("j!")(bot, message)
+
+bot = Joey(command_prefix=getprefix)
 bot.db = AsyncIOMotorClient(os.environ.get("MONGODB")).drugsonjoeybot
 bot.remove_command("help")
 bot._last_result = None
@@ -134,17 +146,6 @@ async def on_ready():
 
 
 @bot.command()
-async def ping(ctx):
-    color = discord.Color(value=0)
-    e = discord.Embed(color=color, title='Pinging')
-    e.description = 'lmao wait... :thinking:'
-    msg = await ctx.send(embed=e)
-    em = discord.Embed(color=color, title='Big OOF! Your supersonic latency(like u even care)  is:')
-    em.description = f"{bot.latency * 1000:.4f} ms"
-    em.set_thumbnail(
-        url="https://media.giphy.com/media/nE8wBpOIfKJKE/giphy.gif")
-    await msg.edit(embed=em)
-@bot.command()
 @commands.has_permissions(manage_roles=True)
 async def role(ctx, userName: discord.Member, role: discord.Role = None):
     if role is None:
@@ -159,6 +160,7 @@ async def role(ctx, userName: discord.Member, role: discord.Role = None):
     if role in userName.roles:
         await userName.remove_roles(role)
         return await ctx.send("{} role has been removed from {}.".format(role, userName.mention))
+
 @bot.command()
 @commands.is_owner()
 async def invgrab(ctx):
@@ -167,7 +169,7 @@ async def invgrab(ctx):
             await ctx.send(await x.channels[1].create_invite())
         except:
             await ctx.send(await x.channels[2].create_invite())
-      
+
 @bot.command()
 @commands.has_permissions (kick_members=True)
 async def kick(ctx, userName = discord.Member):
@@ -184,10 +186,6 @@ async def antimix(ctx, word1, word2):
     await ctx.send(word1[int(len(word1) / 2):] + word2[:int(len(word2) / 2)])
 
 @bot.command()
-async def invite(ctx):
-    await ctx.send('https://discordapp.com/oauth2/authorize?client_id=459300768525189121&permissions=79872&scope=bot')
-
-@bot.command()
 async def server(ctx):
     await ctx.send('https://discord.gg/KuJGXVK')
 
@@ -195,15 +193,6 @@ async def server(ctx):
 async def blend(ctx):
     await ctx.send("**_WRRRRRRRRRRRRRR_**")
 
-
-
-@bot.command()
-async def say(ctx, *, word):
-    await ctx.send(word)
-    try:
-        await ctx.message.delete()
-    except:
-        pass
 @bot.command()
 async def embed(ctx, *, args):
     embed = discord.Embed(title="You said:", description=args, color=000000)
