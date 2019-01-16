@@ -31,7 +31,7 @@ class General:
     @commands.command(name="help", aliases=["h", "halp", "commands", "cmds"])
     async def _help(self, ctx, command: str = None):
         """Shows all commands"""
-        prefix = (await self.bot.get_prefix(ctx.message))[1]
+        prefix = list(filter(lambda x: x != str(ctx.guild.me), await self.bot.get_prefix(ctx.message)))[0]
         if command:
             cmd = self.bot.get_command(command.lower()) or self.bot.get_cog(command)
             if not cmd:
@@ -45,7 +45,7 @@ class General:
                     em.description += "\nAliases: `{}`".format(", ".join(cmd.aliases))
                 return await ctx.send(embed=em)
             cmds = self.bot.get_cog_commands(command)
-            em = discord.Embed(color=0xff0000)
+            em = discord.Embed(color=self.bot.color)
             em.description = cmd.__doc__ + "\n\n`" if cmd.__doc__ else "No Description\n\n`" 
             em.set_footer(text=f"{prefix}help <cmd> for more info on a command.")
             for x in cmds:
