@@ -108,12 +108,10 @@ async def on_command_error(ctx, error):
 async def on_message(msg):
     if "im gonna say the n word" in msg.content.lower():
         return await msg.channel.send("THATS RACIST YOU CANT SAY THE N WORD")
-    elif "no u" in msg.content.lower():
-        noucount += 1
     await bot.process_commands(msg)
 @bot.command()
 async def howmanynous(ctx):
-    await ctx.send(f"no u was said like {noucount} after i was last turned on lmao")
+    await ctx.send("none die")
 @bot.command()
 @commands.has_permissions(manage_messages = True)
 async def mute(self, ctx, user:discord.Member=None):
