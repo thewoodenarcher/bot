@@ -17,7 +17,7 @@ def dev():
             raise commands.NotOwner("This command is for developers only!")
         return True
     return commands.check(check)
-class Owner(commands.Cog)
+class Owner(commands.Cog):
     """Core class for owner commands"""
     def __init__(self, bot):
         super().__init__(bot)
