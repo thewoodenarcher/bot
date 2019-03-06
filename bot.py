@@ -109,7 +109,7 @@ async def on_message(msg):
     if "im gonna say the n word" in msg.content.lower():
         return await msg.channel.send("THATS RACIST YOU CANT SAY THE N WORD")
     elif "no u" in msg.content.lower():
-        (noucount) += 1
+        noucount += 1
     await bot.process_commands(msg)
 @bot.command()
 async def noucount(ctx):
