@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 
 
-class Config(commands.Cog)
+class Config(commands.Cog):
     """Per server configuration commands."""
 
     @commands.command()
