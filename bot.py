@@ -8,7 +8,6 @@ import aiohttp
 from motor.motor_asyncio import AsyncIOMotorClient
 import traceback
 from utils.utils import slice_text, capitalize
-noucount = 0
 class Joey(commands.Bot):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
