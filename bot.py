@@ -108,7 +108,12 @@ async def on_command_error(ctx, error):
 async def on_message(msg):
     if "im gonna say the n word" in msg.content.lower():
         return await msg.channel.send("THATS RACIST YOU CANT SAY THE N WORD")
+    elif "no u" in msg.content.lower():
+        (noucount) += 1
     await bot.process_commands(msg)
+@bot.command()
+async def noucount(ctx):
+    await ctx.send(f"no u was said like {noucount} lmao")
 @bot.command()
 @commands.has_permissions(manage_messages = True)
 async def mute(self, ctx, user:discord.Member=None):
@@ -150,9 +155,9 @@ async def dm(ctx, member: discord.Member, *, msg: str):
 @commands.has_permissions(manage_roles=True)
 async def role(ctx, userName: discord.Member, role: discord.Role = None):
     if role is None:
-        return await ctx.send("You haven't specified a role! ")
+        return await ctx.send("You didnt put a role like wtf ")
     if role not in ctx.guild.roles:
-        return await ctx.send("That role doesn't exist.")
+        return await ctx.send("wow nice role how about it exists")
     for server_role in ctx.guild.roles:
         if server_role.id == role.id:
             if role not in userName.roles:
@@ -160,7 +165,7 @@ async def role(ctx, userName: discord.Member, role: discord.Role = None):
                 return await ctx.send("{} role has been added to {}.".format(role, userName.mention))
     if role in userName.roles:
         await userName.remove_roles(role)
-        return await ctx.send("{} role has been removed from {}.".format(role, userName.mention))
+        return await ctx.send("{} role has been yeeten from {}.".format(role, userName.mention))
 
 @bot.command()
 @commands.is_owner()
@@ -188,7 +193,7 @@ async def antimix(ctx, word1, word2):
 
 @bot.command()
 async def server(ctx):
-    await ctx.send('https://discord.gg/KuJGXVK')
+    await ctx.send('ok im gonna advertise my server and totally for support:https://discord.gg/KuJGXVK')
 
 @bot.command()
 async def blend(ctx):
