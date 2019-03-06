@@ -112,8 +112,8 @@ async def on_message(msg):
         noucount += 1
     await bot.process_commands(msg)
 @bot.command()
-async def noucount(ctx):
-    await ctx.send(f"no u was said like {noucount} lmao")
+async def howmanynous(ctx):
+    await ctx.send(f"no u was said like {noucount} after i was last turned on lmao")
 @bot.command()
 @commands.has_permissions(manage_messages = True)
 async def mute(self, ctx, user:discord.Member=None):
