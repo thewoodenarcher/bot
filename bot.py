@@ -104,7 +104,11 @@ async def on_command_error(ctx, error):
 
     await ctx.send("Something went wrong, please try again later.")
     await ctx.bot.log_error(error, footer=f"Command: {ctx.command.name}, User: {ctx.author}, Server: {ctx.guild.name if ctx.guild else 'DM'}")
-
+@bot.event
+async def on_message(msg):
+    if "im gonna say the n word" in msg.content.lower():
+        return await msg.channel.send("THATS RACIST YOU CANT SAY THE N WORD")
+    await bot.process_commands(msg)
 @bot.command()
 @commands.has_permissions(manage_messages = True)
 async def mute(self, ctx, user:discord.Member=None):
