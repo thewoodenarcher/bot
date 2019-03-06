@@ -19,7 +19,7 @@ def dev():
     return commands.check(check)
 class Owner(commands.Cog)
     """Core class for owner commands"""
-   def __init__(self, bot):
+def __init__(self, bot):
     super().__init__(bot)
     self.sessions = set()
 
