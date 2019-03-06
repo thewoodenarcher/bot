@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 import re
 from utils.utils import slice_text
 
-class Utils(commands.Cog)
+class Utils(commands.Cog):
     """Utility commands to make your life easier"""
     
     
