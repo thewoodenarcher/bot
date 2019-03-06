@@ -3,10 +3,8 @@ from discord.ext import commands
 from utils.paginator import Paginator
 from utils.utils import _command_signature
 
-class General:
+class General(commands.Cog)
     """Some general commands."""
-    def __init__(self, bot):
-        self.bot = bot
 
     @commands.command()
     async def say(self, ctx, *, msg: commands.clean_content()):
