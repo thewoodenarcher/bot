@@ -2,10 +2,8 @@ import discord
 from discord.ext import commands
 
 
-class Config:
+class Config(commands.Cog)
     """Per server configuration commands."""
-    def __init__(self, bot):
-        self.bot = bot
 
     @commands.command()
     @commands.guild_only()
