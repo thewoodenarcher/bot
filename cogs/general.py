@@ -3,7 +3,7 @@ from discord.ext import commands
 from utils.paginator import Paginator
 from utils.utils import _command_signature
 
-class General(commands.Cog)
+class General(commands.Cog):
     """Some general commands."""
 
     @commands.command()
