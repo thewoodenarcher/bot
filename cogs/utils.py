@@ -4,10 +4,9 @@ from bs4 import BeautifulSoup
 import re
 from utils.utils import slice_text
 
-class Utils:
+class Utils(commands.Cog)
     """Utility commands to make your life easier"""
-    def __init__(self, bot):
-        self.bot = bot
+    
     
     @commands.command(aliases=["g"])
     @commands.cooldown(1, 5, commands.BucketType.user)
