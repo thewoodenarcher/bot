@@ -4,6 +4,8 @@ from utils.paginator import Paginator
 from utils.utils import _command_signature
 
 class General(commands.Cog):
+    def __init__(self, bot):
+        self.bot = bot
     """Some general commands."""
 
     @commands.command()
