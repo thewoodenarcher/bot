@@ -3,6 +3,8 @@ from discord.ext import commands
 
 
 class Config(commands.Cog):
+    def __init__(self, bot):
+        self.bot = bot
     """Per server configuration commands."""
 
     @commands.command()
