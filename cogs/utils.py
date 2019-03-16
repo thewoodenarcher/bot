@@ -5,7 +5,8 @@ import re
 from utils.utils import slice_text
 
 class Utils(commands.Cog):
-    """Utility commands to make your life easier"""
+    def __init__(self, bot):
+        self.bot = bot
     
     
     @commands.command(aliases=["g"])
