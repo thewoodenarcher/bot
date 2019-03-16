@@ -18,10 +18,8 @@ def dev():
         return True
     return commands.check(check)
 class Owner(commands.Cog):
-    """Core class for owner commands"""
     def __init__(self, bot):
-        super().__init__(bot)
-        self.sessions = set()
+        self.bot = bot
 
     def cleanup_code(self, content):
         '''Automatically removes code blocks from the code.'''
