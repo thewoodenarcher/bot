@@ -187,7 +187,7 @@ async def antimix(ctx, word1, word2):
 
 @bot.command()
 async def server(ctx):
-    await ctx.send('ok im gonna advertise my server and totally for support:https://discord.gg/KuJGXVK')
+    await ctx.send('ok im gonna advertise my server and totally for support: https://discord.gg/tQXugvk')
 
 @bot.command()
 async def blend(ctx):
@@ -206,7 +206,7 @@ async def embed(ctx, *, args):
 @commands.has_permissions(manage_messages=True)
 async def clear(ctx, amount=100):
     await ctx.channel.purge(limit=amount, bulk=True)
-    await ctx.send('OOF messages')
+    await ctx.send('bruh moment')
 
 @bot.command()
 async def truefalse(ctx, *, stuff=None):
